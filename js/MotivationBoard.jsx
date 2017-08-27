@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import PersonalCard from './PersonalCard.jsx';
+import AddNewPersonForm from './AddNewPersonForm.jsx';
 
 class MotivationBoard extends Component {
     
     render(){
-        return (<div className="motivation-board">
-        <h2>Motivation Board</h2>
+        return (<div><h2>Motivation Board</h2>
+        <div className="motivation-board">
+        
             {this.props.persons.map(person => (
-                <PersonalCard key={person.id} person={person}/>
+                <PersonalCard key={person.id} person={person} tasks={this.props.tasks}/>
             )
             )}
+        </div>
+        <AddNewPersonForm />
         </div>);
     }
 }

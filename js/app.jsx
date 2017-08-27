@@ -2,16 +2,12 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import MotivationBoard from './MotivationBoard.jsx';
 import TasksManager from './TasksManager.jsx';
-import TaskList from './TaskList.jsx';
-import TaskListGeneral from './TaskListGeneral.jsx';
-import AddPersonButton from './AddPersonButton.jsx';
-import AddTaskButton from './AddTaskButton.jsx';
 import "../sass/sass.scss";
 
 class App extends Component {
     constructor(){
         super();
-        this.state = {persons: [], tasks: [], array: [1]};
+        this.state = {persons: [], tasks: []};
     }
     
     //Fetch data from dbase:
@@ -46,32 +42,11 @@ class App extends Component {
             console.log(resp);
         });
     }
-    
-    addTask = (event) => {
-        console.log("addTask");
-        let newTask = {
-            name: "Task",
-            periodic: true,
-            score: 100
-        };
         
-        fetch('http://localhost:3000/tasks', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify( newTask )
-        });
-        
-    }
-    
     render(){
         return (<div>
-            <MotivationBoard persons={this.state.persons} />
+            <MotivationBoard persons={this.state.persons} tasks={this.state.tasks}/>
             <TasksManager tasks={this.state.tasks} />
-            <TaskListGeneral filter={this.state.array}/>
-            <AddPersonButton addPersonHandler={this.addPerson}/>
-            <AddTaskButton addTaskHandler={this.addTask}/>
         </div>);
     }
 }

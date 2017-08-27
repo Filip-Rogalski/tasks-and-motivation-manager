@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AddNewTaskForm from './AddNewTaskForm.jsx';
 
 class TasksManager extends Component {
     render(){
@@ -10,6 +11,7 @@ class TasksManager extends Component {
                     <span> Punktacja: {item.score}</span> </li>
                 ))}
             </ul>
+            <AddNewTaskForm />
         </div>);
     }
 }

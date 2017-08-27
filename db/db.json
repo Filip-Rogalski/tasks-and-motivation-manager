@@ -3,12 +3,15 @@
     {
       "id": 1,
       "name": "Krzys",
-      "score": 0,
+      "score": 70,
       "currentTasks": [
+        1,
         3
       ],
       "prevTasks": [
         3,
+        2,
+        1,
         2
       ]
     },
@@ -24,11 +27,16 @@
     },
     {
       "name": "John",
-      "score": 0,
-      "currentTasks": [],
+      "score": 25,
+      "currentTasks": [
+        1,
+        7,
+        8
+      ],
       "prevTasks": [
         4,
-        5
+        5,
+        3
       ],
       "id": 3
     },
@@ -44,13 +52,18 @@
     },
     {
       "name": "John",
-      "score": 0,
-      "currentTasks": [
-        5
-      ],
+      "score": 400,
+      "currentTasks": [],
       "prevTasks": [
         1,
-        4
+        4,
+        4,
+        5,
+        6,
+        4,
+        5,
+        6,
+        5
       ],
       "id": 5
     },
@@ -60,6 +73,29 @@
       "currentTasks": [],
       "prevTasks": [],
       "id": 6
+    },
+    {
+      "name": "John",
+      "score": 0,
+      "currentTasks": [],
+      "prevTasks": [],
+      "id": 7
+    },
+    {
+      "name": "Margaret",
+      "score": 0,
+      "currentTasks": [
+        3
+      ],
+      "prevTasks": [],
+      "id": 8
+    },
+    {
+      "name": "Elżbieta",
+      "score": 0,
+      "currentTasks": [],
+      "prevTasks": [],
+      "id": 9
     }
   ],
   "tasks": [
@@ -92,6 +128,24 @@
       "periodic": true,
       "score": 100,
       "id": 5
+    },
+    {
+      "name": "Task",
+      "periodic": true,
+      "score": 100,
+      "id": 6
+    },
+    {
+      "name": "Trash bin",
+      "periodic": "false",
+      "score": "23",
+      "id": 7
+    },
+    {
+      "name": "Okna",
+      "periodic": false,
+      "score": "200",
+      "id": 8
     }
   ]
 }

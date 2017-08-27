@@ -25,7 +25,7 @@ class TaskListPersonalCurrent extends Component {
                <h4>Current Tasks:</h4>
                 <ul>
                     {this.state.tasksToShow.map(task => (
-                        <li key={task.id} data-taskval={task.score} data-taskid={task.id}><span>{task.name}</span> | <span>Wartość: {task.score}</span> | <button onClick={this.props.completeTask} id="completeTask">Complete</button></li>
+                        <li key={task.id} data-taskval={task.score} data-taskid={task.id}><span>{task.name}</span> | <span>Wartość: {task.score}</span> | <button onClick={this.props.removeTask}>Remove Task</button> | <button onClick={this.props.completeTask} id="completeTask">Complete</button></li>
                     ))}
                 </ul>
             </div>
