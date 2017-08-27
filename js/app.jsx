@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import MotivationBoard from './MotivationBoard.jsx';
 import TasksManager from './TasksManager.jsx';
+import Entrance from './Entrance.jsx';
 import "../sass/sass.scss";
 
 class App extends Component {
@@ -45,6 +46,7 @@ class App extends Component {
         
     render(){
         return (<div>
+            <Entrance />
             <MotivationBoard persons={this.state.persons} tasks={this.state.tasks}/>
             <TasksManager tasks={this.state.tasks} />
         </div>);
