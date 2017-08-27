@@ -3,32 +3,64 @@ import ReactDOM from 'react-dom';
 import MotivationBoard from './MotivationBoard.jsx';
 import TasksManager from './TasksManager.jsx';
 import TaskList from './TaskList.jsx';
+import AddPersonButton from './AddPersonButton.jsx';
+import AddTaskButton from './AddTaskButton.jsx';
 import "../sass/sass.scss";
 
 class App extends Component {
     constructor(){
         super();
-        this.state = {persons: [{id: 1, name: 'krzys', score: 0, currentTasks: [1, 3], prevTasks: [2, 4]}, {id: 2, name: 'krysia', score: 0, currentTasks: [2, 4], prevTasks: [1, 3]}], tasks: [{id: 1, name: 'breakfast', periodic: true, score: 25}, {id: 2, name: 'organize party', periodic: false, score: 45}], array: [1, 3]};
+        this.state = {persons: [], tasks: [], array: [1]};
     }
     
-    getTasksByArrayOfIds = (array) => {
-        let newArray = [];
-        array.map(item => {
-            this.state.tasks.map(task => {
-                if(task.id == item) {
-                    newArray.push(task.name);
-                }
-            })    
+    //Fetch data from dbase:
+    
+    componentDidMount = () => {
+         fetch('http://localhost:3000/db').then(resp => {
+            return resp.json();
+        }).then(data => {
+             this.setState({
+                 persons: data.persons,
+                 tasks: data.tasks
+             });
         });
-        return newArray;
     }
     
     addPerson = (event) => {
-        console.log(event.target);
+        console.log("addPerson");
+        let newPerson = {
+            name: "John",
+            score: 0,
+            currentTasks: [],
+            prevTasks: []
+        };
+        
+        fetch('http://localhost:3000/persons', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify( newPerson )
+        });
+        
     }
     
     addTask = (event) => {
-        console.log(event.target);
+        console.log("addTask");
+        let newTask = {
+            name: "Task",
+            periodic: true,
+            score: 100
+        };
+        
+        fetch('http://localhost:3000/tasks', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify( newTask )
+        });
+        
     }
     
     render(){
@@ -36,6 +68,8 @@ class App extends Component {
             <MotivationBoard persons={this.state.persons} />
             <TasksManager tasks={this.state.tasks} />
             <TaskList filter={this.state.array}/>
+            <AddPersonButton addPersonHandler={this.addPerson}/>
+            <AddTaskButton addTaskHandler={this.addTask}/>
         </div>);
     }
 }

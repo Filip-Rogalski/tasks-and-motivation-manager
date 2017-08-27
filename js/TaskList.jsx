@@ -9,12 +9,12 @@ class TaskList extends Component {
         };
     }
     
-    componentDidMount() {
+    componentDidMount = () => {
         fetch('http://localhost:3000/tasks').then(resp => {
             return resp.json();
         }).then(data => {
             this.setState({
-                tasksToShow: filterTasks(data, [1, 3])
+                tasksToShow: filterTasks(data, this.props.filter)
             })
         });
     }
@@ -24,7 +24,7 @@ class TaskList extends Component {
             <div>
                 <ul>
                     {this.state.tasksToShow.map(task => (
-                        <li key={task.id}>{task.name}</li>
+                        <li key={task.id}><span>{task.name}</span> | <span>Wartość: {task.score}</span></li>
                     ))}
                 </ul>
             </div>
