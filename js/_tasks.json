@@ -1,0 +1,20 @@
+ [
+    {
+        "id": 1, 
+        "name": "breakfast", 
+        "periodic": true, 
+        "score": 25
+    }, 
+    {
+        "id": 2, 
+        "name": "organize party", 
+        "periodic": false, 
+        "score": 45
+    },
+    {
+        "id": 3, 
+        "name": "wash dishes", 
+        "periodic": true, 
+        "score": 25
+    }
+]

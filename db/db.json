@@ -1,0 +1,40 @@
+{
+    "persons": 
+    [
+        {
+            "id": 1, 
+            "name": "krzys", 
+            "score": 0, 
+            "currentTasks": [1], 
+            "prevTasks": [2]
+        }, 
+        {
+            "id": 2, 
+            "name": "krysia", 
+            "score": 0, 
+            "currentTasks": [2], 
+            "prevTasks": [1]
+        }
+    ], 
+    "tasks": 
+    [
+        {
+            "id": 1, 
+            "name": "breakfast", 
+            "periodic": true, 
+            "score": 25
+        }, 
+        {
+            "id": 2, 
+            "name": "organize party", 
+            "periodic": false, 
+            "score": 45
+        },
+        {
+            "id": 3, 
+            "name": "wash dishes", 
+            "periodic": true, 
+            "score": 25
+        }
+    ]
+}
