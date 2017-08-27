@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import MotivationBoard from './MotivationBoard.jsx';
 import TasksManager from './TasksManager.jsx';
 import TaskList from './TaskList.jsx';
+import TaskListGeneral from './TaskListGeneral.jsx';
 import AddPersonButton from './AddPersonButton.jsx';
 import AddTaskButton from './AddTaskButton.jsx';
 import "../sass/sass.scss";
@@ -41,8 +42,9 @@ class App extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify( newPerson )
+        }).then(resp => {
+            console.log(resp);
         });
-        
     }
     
     addTask = (event) => {
@@ -67,7 +69,7 @@ class App extends Component {
         return (<div>
             <MotivationBoard persons={this.state.persons} />
             <TasksManager tasks={this.state.tasks} />
-            <TaskList filter={this.state.array}/>
+            <TaskListGeneral filter={this.state.array}/>
             <AddPersonButton addPersonHandler={this.addPerson}/>
             <AddTaskButton addTaskHandler={this.addTask}/>
         </div>);

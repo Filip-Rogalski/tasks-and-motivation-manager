@@ -2,46 +2,64 @@
   "persons": [
     {
       "id": 1,
-      "name": "krzys",
+      "name": "Krzys",
       "score": 0,
       "currentTasks": [
-        1
+        3
       ],
       "prevTasks": [
+        3,
         2
       ]
     },
     {
       "id": 2,
-      "name": "krysia",
-      "score": 0,
-      "currentTasks": [
-        2
-      ],
+      "name": "Krysia",
+      "score": 45,
+      "currentTasks": [],
       "prevTasks": [
-        1
+        3,
+        2
       ]
     },
     {
       "name": "John",
       "score": 0,
       "currentTasks": [],
-      "prevTasks": [],
+      "prevTasks": [
+        4,
+        5
+      ],
       "id": 3
     },
     {
       "name": "John",
       "score": 0,
       "currentTasks": [],
-      "prevTasks": [],
+      "prevTasks": [
+        1,
+        4
+      ],
       "id": 4
+    },
+    {
+      "name": "John",
+      "score": 0,
+      "currentTasks": [
+        5
+      ],
+      "prevTasks": [
+        1,
+        4
+      ],
+      "id": 5
     },
     {
       "name": "John",
       "score": 0,
       "currentTasks": [],
       "prevTasks": [],
-      "id": 5
+      "id": 6
     }
   ],
   "tasks": [

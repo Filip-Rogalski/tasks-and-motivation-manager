@@ -1,3 +1,19 @@
 body {
     background-color: lightgrey;
 }
+
+.motivation-board {
+    &:after, &:before {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+.personal-card {
+    width: 300px;
+    border: 2px solid darkgrey;
+    margin: 10px;
+    padding: 20px;
+    float: left;
+}
