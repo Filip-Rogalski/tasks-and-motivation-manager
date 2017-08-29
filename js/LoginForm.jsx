@@ -5,33 +5,7 @@ class LoginForm extends Component {
         super();
         this.state = {userName: '', password: ''};
     }
-    
-    
-    /* Move handleSubmit to parent component. */
-    
-    handleSubmit = (e) => {
-        console.log('handlesubmit');
-        e.preventDefault();
-        
-        let user = {
-            name: this.state.userName,
-            password: this.state.password
-        };
-        
-        console.log(user);
-        fetch('http://localhost:3000/persons?name=' + user.name + '&password=' + user.password).then(resp => {
-            return resp.json();
-        }).then(data => {
-            if (data.length == 1) {
-                console.log('user id', data[0].id);
-            } else {
-                console.log('błąd logowania!');
-            }
-        })
-        
-        
-    }
-    
+         
     handleUserName = (e) => {
         console.log('handleUserName');
         this.setState({userName: e.target.value});
@@ -42,7 +16,28 @@ class LoginForm extends Component {
         this.setState({password: e.target.value});
     }
     
-    
+    handleSubmit = (e) => {
+        console.log('handlesubmit');
+        e.preventDefault();
+        
+        let user = {
+            name: this.state.userName,
+            password: this.state.password
+        };
+         
+        console.log(user);
+        fetch('http://localhost:3000/persons?name=' + user.name + '&password=' + user.password).then(resp => {
+            console.log(resp);
+            return resp.json();
+        }).then(data => {
+            if (data.length == 1) {
+                this.props.handleLogin(data[0].id);
+            } else {
+                console.log('błąd logowania!');
+            }
+        })    
+    }
+
     render(){
         return (
             <div>Login Form

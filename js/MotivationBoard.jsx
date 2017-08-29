@@ -9,7 +9,7 @@ class MotivationBoard extends Component {
         <div className="motivation-board">
         
             {this.props.persons.map(person => (
-                <PersonalCard key={person.id} person={person} tasks={this.props.tasks}/>
+                <PersonalCard logged={this.props.logged} key={person.id} person={person} tasks={this.props.tasks}/>
             )
             )}
         </div>

@@ -10,7 +10,7 @@ class Entrance extends Component {
     render(){
         return (<div>
           <h3>Motivation Board</h3>
-           {this.state.user == 0 && <LoginForm />}
+           {this.state.user == 0 && <LoginForm handleLogin={this.props.handleLogin}/>}
            {(this.state.user == 1 || this.state.user == 2) && <LoginInfo />}
         </div>);
     }

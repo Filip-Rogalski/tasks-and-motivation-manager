@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import MotivationBoard from './MotivationBoard.jsx';
+import PersonalMotivation from './PersonalMotivation.jsx';
 import TasksManager from './TasksManager.jsx';
 import Entrance from './Entrance.jsx';
 import "../sass/sass.scss";
@@ -8,7 +9,19 @@ import "../sass/sass.scss";
 class App extends Component {
     constructor(){
         super();
-        this.state = {persons: [], tasks: []};
+        this.state = {persons: [], tasks: [], logged: null};
+    }
+    
+    componentWillMount = () => {
+        this.setState({logged: (parseInt(localStorage.logged, 10) || null)}, function(){
+            console.log(this.state.logged)
+        });
+    }
+    
+     handleLogin = (userid) => {
+         this.setState({logged: userid}, function(){
+               localStorage.logged = userid;
+         });
     }
     
     //Fetch data from dbase:
@@ -46,9 +59,10 @@ class App extends Component {
         
     render(){
         return (<div>
-            <Entrance />
-            <MotivationBoard persons={this.state.persons} tasks={this.state.tasks}/>
-            <TasksManager tasks={this.state.tasks} />
+            <Entrance handleLogin={this.handleLogin}/>
+            <PersonalMotivation logged={this.state.logged}/>
+            <MotivationBoard logged={this.state.logged} persons={this.state.persons} tasks={this.state.tasks}/>
+                {this.state.logged == 1000 && <TasksManager tasks={this.state.tasks} />}
         </div>);
     }
 }

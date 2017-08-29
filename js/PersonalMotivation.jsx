@@ -1,31 +1,34 @@
 import React, { Component } from 'react';
 import TaskList from './TaskList.jsx';
 import TaskListPersonalCurrent from './TaskListPersonalCurrent.jsx';
-import AddTaskPersonal from './AddTaskPersonal.jsx';
 
-class PersonalCard extends Component {
+class PersonalMotivation extends Component {
+    constructor(){
+        super();
+        this.state = {person: {
+            id: 1,
+            name: "Krzys",
+            password: "1234",
+            score: 95,
+            currentTasks: [],
+            prevTasks: []
+        }
+                     }
+    }
     
-    
-    addTask = (e) => {
-        let taskid = parseInt(e.target.parentElement.dataset.taskid, 10);
-        let curTasks = this.props.person.currentTasks;
-        curTasks.push(taskid);
-        let updatedCurTasks = curTasks;
-        updatedCurTasks.sort((a,b) => {
-            return a - b;
-        });
-        let personid = this.props.person.id;
-        let modification = {
-            currentTasks: updatedCurTasks
-        };
-        
-        fetch('http://localhost:3000/persons/' + personid, {
-                method: 'PATCH',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify( modification )
-                  });
+    componentWillMount = () => {
+        if (this.props.logged) {
+            
+            fetch('http://localhost:3000/persons/' + this.props.logged).then(resp => {
+                return resp.json();
+            }).then(data => {
+                 this.setState({
+                     person: data
+                 }, function(){
+                     console.log("this.state.person", this.state.person);
+                 });
+            });
+        }
     }
     
     removeTask = (e) => {
@@ -81,18 +84,22 @@ class PersonalCard extends Component {
     }
     
     render(){
-        return(
-            <div className="personal-card">
-                <h3>Name: {this.props.person.name}</h3>
-                    <TaskListPersonalCurrent logged={this.props.logged} personid={this.props.person.id} removeTask={this.removeTask} completeTask={this.completeTask} filter={this.props.person.currentTasks} />               
-                <h4>Previous tasks:</h4>
-                    <TaskList filter={this.props.person.prevTasks} />               
-                <h4>Total score: {this.props.person.score}</h4>
-                {this.props.logged === 1000 && <AddTaskPersonal addTask={this.addTask} tasks={this.props.tasks}/>}
-            </div>
-        );
+        {if (this.props.logged) {
+            console.log('Fifi', this.props.logged, this.state.person)
+            return(
+                <div className="personal-card">
+                    <h3>Name: {this.state.person.name}</h3>
+                        <TaskListPersonalCurrent removeTask={this.removeTask} completeTask={this.completeTask} filter={this.state.person.currentTasks} />               
+                    <h4>Previous tasks:</h4>
+                        <TaskList filter={this.state.person.prevTasks} />               
+                    <h4>Total score: {this.state.person.score}</h4>
+                </div>
+            );
+        } else {
+            return null;
+        }}
+        
     }
 }
 
-
-export default PersonalCard;
+export default PersonalMotivation
