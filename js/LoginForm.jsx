@@ -7,27 +7,20 @@ class LoginForm extends Component {
     }
          
     handleUserName = (e) => {
-        console.log('handleUserName');
         this.setState({userName: e.target.value});
     }
     
     handlePassword = (e) => {
-        console.log('handlePasword');
         this.setState({password: e.target.value});
     }
     
     handleSubmit = (e) => {
-        console.log('handlesubmit');
         e.preventDefault();
-        
         let user = {
             name: this.state.userName,
             password: this.state.password
         };
-         
-        console.log(user);
         fetch('http://localhost:3000/persons?name=' + user.name + '&password=' + user.password).then(resp => {
-            console.log(resp);
             return resp.json();
         }).then(data => {
             if (data.length == 1) {

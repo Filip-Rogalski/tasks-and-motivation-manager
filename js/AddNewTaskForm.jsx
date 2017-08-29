@@ -12,22 +12,18 @@ class AddNewTaskForm extends Component {
     
     
     handleNewTaskName = (e) => {
-        console.log('handleName');
         this.setState({newTaskName: e.target.value});
     }
     
     handleNewTaskValue = (e) => {
-        console.log('handleVal');
         this.setState({newTaskValue: e.target.value});
     }
     
     handleNewTaskPeriodical = (e) => {
-        console.log('handlePer');
         this.setState({newTaskPeriodical: e.target.value});
     }
     
     handleSubmit = (e) => {
-        console.log('handleSubm');
         e.preventDefault();
      
          let newTask = {

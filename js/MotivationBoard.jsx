@@ -7,11 +7,9 @@ class MotivationBoard extends Component {
     render(){
         return (<div><h2>Motivation Board</h2>
         <div className="motivation-board">
-        
-            {this.props.persons.map(person => (
-                <PersonalCard logged={this.props.logged} key={person.id} person={person} tasks={this.props.tasks}/>
-            )
-            )}
+            {this.props.persons.filter((el, index) => { return index > 0}).map((person, index) => (
+                <PersonalCard logged={this.props.logged} key={person.id} person={person} tasks={this.props.tasks}/>                        
+            ))}
         </div>
         <AddNewPersonForm />
         </div>);

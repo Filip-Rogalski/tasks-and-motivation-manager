@@ -3,17 +3,9 @@ import TaskList from './TaskList.jsx';
 import TaskListPersonalCurrent from './TaskListPersonalCurrent.jsx';
 
 class PersonalMotivation extends Component {
-    constructor(){
-        super();
-        this.state = {person: {
-            id: 1,
-            name: "Krzys",
-            password: "1234",
-            score: 95,
-            currentTasks: [],
-            prevTasks: []
-        }
-                     }
+    constructor(props){
+        super(props);
+        this.state = {person: ''}
     }
     
     componentWillMount = () => {
@@ -24,8 +16,6 @@ class PersonalMotivation extends Component {
             }).then(data => {
                  this.setState({
                      person: data
-                 }, function(){
-                     console.log("this.state.person", this.state.person);
                  });
             });
         }
@@ -58,7 +48,6 @@ class PersonalMotivation extends Component {
         let personid = this.props.person.id;
        let taskid = parseInt(e.target.parentElement.dataset.taskid, 10);
         let taskval = parseInt(e.target.parentElement.dataset.taskval, 10);
-        console.log('complete task', taskid, 'for', personid, 'value', taskval);
         let curTasks = this.props.person.currentTasks;
         let prevTasks = this.props.person.prevTasks;
         let prevScore = this.props.person.score;
@@ -84,8 +73,7 @@ class PersonalMotivation extends Component {
     }
     
     render(){
-        {if (this.props.logged) {
-            console.log('Fifi', this.props.logged, this.state.person)
+        {if (this.props.logged < 1000) {
             return(
                 <div className="personal-card">
                     <h3>Name: {this.state.person.name}</h3>

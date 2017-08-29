@@ -13,9 +13,7 @@ class App extends Component {
     }
     
     componentWillMount = () => {
-        this.setState({logged: (parseInt(localStorage.logged, 10) || null)}, function(){
-            console.log(this.state.logged)
-        });
+        this.setState({logged: (parseInt(localStorage.logged, 10) || null)});
     }
     
      handleLogin = (userid) => {
@@ -23,6 +21,11 @@ class App extends Component {
                localStorage.logged = userid;
          });
     }
+     
+     handleLogout = () => {
+         this.setState({logged: null});
+         localStorage.clear();
+     }
     
     //Fetch data from dbase:
     
@@ -59,9 +62,9 @@ class App extends Component {
         
     render(){
         return (<div>
-            <Entrance handleLogin={this.handleLogin}/>
-            <PersonalMotivation logged={this.state.logged}/>
-            <MotivationBoard logged={this.state.logged} persons={this.state.persons} tasks={this.state.tasks}/>
+            <Entrance logged={this.state.logged} handleLogin={this.handleLogin} handleLogout={this.handleLogout} />
+                {this.state.logged && <PersonalMotivation logged={this.state.logged} person={this.state.persons[this.state.logged]}/>}
+            <MotivationBoard logged={this.state.logged} persons={this.state.persons} tasks={this.state.tasks} />
                 {this.state.logged == 1000 && <TasksManager tasks={this.state.tasks} />}
         </div>);
     }

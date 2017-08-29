@@ -5,19 +5,13 @@ class TasksManager extends Component {
     
     removeTask = (e) => {
         let taskid = e.target.parentElement.dataset.taskid;
-        console.log(taskid);
         let fullTasksIndexArray = [];
         this.props.tasks.forEach(item => {
             fullTasksIndexArray.push(item.id);
         })
-        console.log(fullTasksIndexArray);
-        
         let updatedFullTasksIndexArray = fullTasksIndexArray.filter(item => {
             return parseInt(item, 10) !== parseInt(taskid, 10);
         })
-        
-        console.log(updatedFullTasksIndexArray);
-        
     }
     
     render(){

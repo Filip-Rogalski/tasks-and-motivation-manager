@@ -55,7 +55,6 @@ class PersonalCard extends Component {
         let personid = this.props.person.id;
        let taskid = parseInt(e.target.parentElement.dataset.taskid, 10);
         let taskval = parseInt(e.target.parentElement.dataset.taskval, 10);
-        console.log('complete task', taskid, 'for', personid, 'value', taskval);
         let curTasks = this.props.person.currentTasks;
         let prevTasks = this.props.person.prevTasks;
         let prevScore = this.props.person.score;
