@@ -4,8 +4,19 @@ class AddTaskPersonal extends Component {
     constructor(){
         super();
         this.state = {
-            visible: false
+            visible: false,
+            tasks: []
         }
+    }
+    
+    componentWillMount = () => {
+        fetch('http://localhost:3000/tasks').then(resp => {
+                return resp.json();
+            }).then(data => {
+                 this.setState({
+                     tasks: data
+                 });
+            });
     }
     
     showHideTasks = () => {
@@ -20,7 +31,7 @@ class AddTaskPersonal extends Component {
             {this.state.visible && 
             <div>
                 <ul>
-                    {this.props.tasks.map(task => (
+                    {this.state.tasks.map(task => (
                         <li key={task.id} data-taskid={task.id}><span>{task.name}</span> | <button onClick={this.props.addTask}>Add Task</button></li>
                     ))}
                 </ul>

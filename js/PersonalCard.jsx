@@ -1,94 +1,124 @@
 import React, { Component } from 'react';
-import TaskList from './TaskList.jsx';
-import TaskListPersonalCurrent from './TaskListPersonalCurrent.jsx';
 import AddTaskPersonal from './AddTaskPersonal.jsx';
+import filterTasks from './filterTasks_1';
+import getCompletionArray from './getCompletionArray';
 
 class PersonalCard extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            id: '', 
+            name: '', 
+            currentTasks: [], 
+            prevTasks: [], 
+            score: 0, 
+            prevTasksToShow: [], 
+            currentTasksToShow: [], 
+            tasksToAdd: [], 
+            addTaskVisible: false
+        }
+    }
     
+    componentDidMount = () => {
+        fetch('http://localhost:3000/persons/' + this.props.person.id).then(resp => {
+            return resp.json();
+        }).then(data => {
+            this.setState({
+                id: this.props.person.id,
+                name: data.name,
+                currentTasks: data.currentTasks,
+                prevTasks: data.prevTasks,
+                score: data.score
+            });
+        });
+        setTimeout(() => {
+            this.setState({
+                currentTasksToShow: filterTasks(this.props.tasks, this.state.currentTasks),
+                prevTasksToShow: filterTasks(this.props.tasks, this.state.prevTasks),
+                tasksToAdd: getCompletionArray(this.props.tasks, this.state.currentTasks)
+            });
+        }, 0);
+    }
+    
+    componentDidUpdate = () => {
+        let newCurrent = filterTasks(this.props.tasks, this.state.currentTasks);
+        let newPrev = filterTasks(this.props.tasks, this.state.prevTasks);
+        let newToAdd = getCompletionArray(this.props.tasks, this.state.currentTasks);
+    
+        setTimeout(() => {
+            this.setState({
+                currentTasksToShow: newCurrent,
+                prevTasksToShow: newPrev,
+                tasksToAdd: newToAdd
+            });
+        }, 0);
+    }
     
     addTask = (e) => {
-        let taskid = parseInt(e.target.parentElement.dataset.taskid, 10);
-        let curTasks = this.props.person.currentTasks;
-        curTasks.push(taskid);
-        let updatedCurTasks = curTasks;
-        updatedCurTasks.sort((a,b) => {
-            return a - b;
-        });
-        let personid = this.props.person.id;
-        let modification = {
-            currentTasks: updatedCurTasks
-        };
-        
-        fetch('http://localhost:3000/persons/' + personid, {
-                method: 'PATCH',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify( modification )
-                  });
-    }
-    
-    removeTask = (e) => {
-        let personid = this.props.person.id;
-        let taskid = parseInt(e.target.parentElement.dataset.taskid, 10);
-        let curTasks = this.props.person.currentTasks;
-        let updatedCurTasks = curTasks.filter(element => {
-            return element !== taskid;
-        });
-        
-        let modification = {
-            currentTasks: updatedCurTasks,
+        let taskid = parseInt(e.target.parentElement.dataset.taskid, 10),
+            curTasks = this.state.currentTasks;
+        if (curTasks.indexOf(taskid) == -1) {
+            curTasks.push(taskid);
+            let updatedCurTasks = curTasks;
+            updatedCurTasks.sort((a,b) => {
+                return a - b;
+            });
+            this.setState({ currentTasks: updatedCurTasks });
+            let modification = {
+                currentTasks: updatedCurTasks
+            };
+            fetch('http://localhost:3000/persons/' + this.state.id, {
+                    method: 'PATCH',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify( modification )
+                      });
+        } else {
+            console.warn('task already in current task list');
         }
-        fetch('http://localhost:3000/persons/' + personid, {
-            method: 'PATCH',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify( modification )
-        });
-        
-        
     }
-    
-    completeTask = (e) => {
-        
-        let personid = this.props.person.id;
-       let taskid = parseInt(e.target.parentElement.dataset.taskid, 10);
-        let taskval = parseInt(e.target.parentElement.dataset.taskval, 10);
-        let curTasks = this.props.person.currentTasks;
-        let prevTasks = this.props.person.prevTasks;
-        let prevScore = this.props.person.score;
-        let updatedCurTasks = curTasks.filter(element => {
-            return element !== taskid;
-        });
-        prevTasks.push(taskid);
-        let updatedScore = prevScore + taskval;
-
-        let modification = {
-            currentTasks: updatedCurTasks,
-            prevTasks: prevTasks,
-            score: updatedScore
-        }
-
-        fetch('http://localhost:3000/persons/' + personid, {
-            method: 'PATCH',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify( modification )
-              });
+ 
+    showHideTasks = () => {
+        this.setState(prevState => ({
+            addTaskVisible: Boolean((Number(prevState.addTaskVisible) + Number(true)) % 2)
+        }));
     }
     
     render(){
         return(
             <div className="personal-card">
-                <h3>Name: {this.props.person.name}</h3>
-                    <TaskListPersonalCurrent logged={this.props.logged} personid={this.props.person.id} removeTask={this.removeTask} completeTask={this.completeTask} filter={this.props.person.currentTasks} />               
+                <h3 className="name">{this.state.name}</h3>
+                  <h4>Current tasks:</h4>
+                   <ul>
+                        {this.state.currentTasksToShow.map((task, index) => (
+                            <li key={index}><span>{task.name}</span> | <span className="value">{task.score}</span></li>
+                        ))}
+                        </ul>
+                                                                 
                 <h4>Previous tasks:</h4>
-                    <TaskList filter={this.props.person.prevTasks} />               
-                <h4>Total score: {this.props.person.score}</h4>
-                {this.props.logged === 1000 && <AddTaskPersonal addTask={this.addTask} tasks={this.props.tasks}/>}
-            </div>
+                    <ul>
+                    {this.state.prevTasksToShow.map(task => (
+                        <li key={task.id}><span>{task.name}</span> | <span className="value">{task.score}</span></li>
+                    ))}
+                </ul>            
+                <h4>Total score: {this.state.score}</h4>
+                
+            
+            
+            {this.props.admin === true && 
+            <div>
+               <h4>Add task</h4>
+                <ul>
+                    {this.state.tasksToAdd.map(task => (
+                        <li key={task.id} data-taskid={task.id}><span>{task.name}</span> | <button onClick={this.addTask}>Add Task</button></li>
+                    ))}
+                </ul>
+            </div>}
+        </div>
+                
+                
+            
         );
     }
 }

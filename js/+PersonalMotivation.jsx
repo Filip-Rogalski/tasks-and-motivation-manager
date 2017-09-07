@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import filterTasks from './filterTasks_1';
+import TaskList from './TaskList.jsx';
+import ReactDOM from 'react-dom';
+import TaskListPersonalCurrent from './TaskListPersonalCurrent.jsx';
 
 class PersonalMotivation extends Component {
     constructor(){
         super();
-        this.state = {id: '', name: '', currentTasks: [], prevTasks: [], score: 0, tasks: [], prevTasksToShow: [], currentTasksToShow: []}
+        this.state = {id: '', name: '', currentTasks: [], prevTasks: [], score: 0}
     }
     
     componentWillMount = () => {
@@ -16,34 +18,12 @@ class PersonalMotivation extends Component {
                      id: data.id,
                      name: data.name,
                      currentTasks: data.currentTasks,
-                     prevTasks: data.prevTasks,
+                     pervTasks: data.prevTasks,
                      score: data.score
                  });
             });
-        setTimeout(() => {
-            fetch('http://localhost:3000/tasks').then(resp => {
-                return resp.json();
-            }).then(data => {
-                this.setState({
-                    tasks: data,
-                    currentTasksToShow: filterTasks(data, this.state.currentTasks),
-                    prevTasksToShow: filterTasks(data, this.state.prevTasks)
-                })
-            });
-        }, 0);
     }
     
-   componentDidUpdate = () => {
-        let newCurrent = filterTasks(this.state.tasks, this.state.currentTasks);
-       let newPrev = filterTasks(this.state.tasks, this.state.prevTasks);
-       
-        setTimeout(() => {
-            this.setState({
-                currentTasksToShow: newCurrent,
-                prevTasksToShow: newPrev
-            })
-        }, 0);
-    }
     
     removeTask = (e) => {
         console.log('rt');
@@ -53,8 +33,7 @@ class PersonalMotivation extends Component {
         let updatedCurTasks = curTasks.filter(element => {
             return element !== taskid;
         });
-        this.setState({ currentTasks: updatedCurTasks });
-        
+        this.setState({ currentTasks: curTasks });
         let modification = {
             currentTasks: updatedCurTasks,
         }
@@ -64,7 +43,11 @@ class PersonalMotivation extends Component {
             'Content-Type': 'application/json'
             },
             body: JSON.stringify( modification )
+        }).then(resp => {
+            console.log(resp);
         });
+        
+        
     }
     
     completeTask = (e) => {
@@ -73,7 +56,6 @@ class PersonalMotivation extends Component {
        let taskid = parseInt(e.target.parentElement.dataset.taskid, 10);
         let taskval = parseInt(e.target.parentElement.dataset.taskval, 10);
         let curTasks = this.state.currentTasks;
-        
         let prevTasks = this.state.prevTasks;
         let prevScore = this.state.score;
         let updatedCurTasks = curTasks.filter(element => {
@@ -87,40 +69,29 @@ class PersonalMotivation extends Component {
             prevTasks: prevTasks,
             score: updatedScore
         };
-        this.setState({ currentTasks: updatedCurTasks, prevTasks: prevTasks, score: updatedScore });
-        
-        
+        this.setState({ currentTasks: curTasks, prevTasks: prevTasks, score: updatedScore });
         fetch('http://localhost:3000/persons/' + this.state.id, {
             method: 'PATCH',
             headers: {
             'Content-Type': 'application/json'
             },
             body: JSON.stringify( modification )
-              });
-        
+              }).then(resp => {
+            console.log(resp);
+        });
     }
     
    render(){
        return (
            <div className="personal-card">
                     <h3>Name: {this.state.name}</h3>
-                       <h4>Current Tasks:</h4>
-                        <ul>
-                        {this.state.currentTasksToShow.map(task => (
-                            <li key={task.id} data-taskval={task.score} data-taskid={task.id}><span>{task.name}</span> | <span className="value">{task.score}</span><button onClick={this.removeTask} id="removeTask">Remove Task</button> | <button onClick={this.completeTask} id="completeTask">Complete</button></li>
-                        ))}
-                        </ul>
+                        <TaskListPersonalCurrent removeTask={this.removeTask} completeTask={this.completeTask} filter={this.state.currentTasks} />               
                     <h4>Previous tasks:</h4>
-                       
-                     <ul>
-                    {this.state.prevTasksToShow.map(task => (
-                        <li key={task.id}><span>{task.name}</span> | <span className="value">{task.score}</span></li>
-                    ))}
-                </ul>
+                        <TaskList filter={this.state.prevTasks} />               
                     <h4>Total score: {this.state.score}</h4>
             </div>
        );
    }
 }
 
-export default PersonalMotivation;
+export default PersonalMotivation

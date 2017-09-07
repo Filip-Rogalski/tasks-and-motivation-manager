@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PersonalCard from './PersonalCard.jsx';
 import AddNewPersonForm from './AddNewPersonForm.jsx';
 
-class MotivationBoard extends Component {
+class MotivationBoardAdmin extends Component {
     constructor(){
         super();
         this.state = {persons: [], tasks: []};
@@ -19,11 +19,18 @@ class MotivationBoard extends Component {
         });
     }
     
+    componentWillUnmount = () => {
+        this.setState({
+            persons: [],
+            tasks: []
+        });
+    }
+    
     render(){
         return (<div><h2>Motivation Board</h2>
         <div className="motivation-board">
             {this.state.persons.filter((el, index) => { return index > 0}).map((person, index) => (
-                <PersonalCard tasks={this.state.tasks} key={person.id} person={person} />     
+                <PersonalCard tasks={this.state.tasks} admin={true} key={person.id} person={person} />     
             ))}
         </div>
         <AddNewPersonForm />
@@ -31,4 +38,4 @@ class MotivationBoard extends Component {
     }
 }
 
-export default MotivationBoard;
+export default MotivationBoardAdmin;

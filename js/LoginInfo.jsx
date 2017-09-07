@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Link, IndexLink } from 'react-router';
 
 class LoginInfo extends Component {
     render(){
         return (
             <div>Login Info
-                <button onClick={this.props.handleLogout}>Log out</button>
+               <button onClick={this.props.handleLogout}>Logout</button>
             </div>
         );
     }

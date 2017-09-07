@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import filterTasks from './filterTasks_1';
 
 class PersonalMotivation extends Component {
@@ -123,4 +124,4 @@ class PersonalMotivation extends Component {
    }
 }
 
-export default PersonalMotivation;
+ReactDOM.render(<PersonalMotivation />, document.getElementById('app'));
