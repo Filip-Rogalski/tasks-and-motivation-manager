@@ -33,7 +33,7 @@ class LoginForm extends Component {
 
     render(){
         return (
-            <div>Login Form
+            <div className="row">Login Form
                <form onSubmit={this.handleSubmit}>
                     <input type="text" id="userName" value={this.state.userName} onChange={this.handleUserName} placeholder="username" />
                     <input type="password" id="password" value={this.state.password} onChange={this.handlePassword} placeholder="password" />

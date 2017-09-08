@@ -102,22 +102,28 @@ class PersonalMotivation extends Component {
     
    render(){
        return (
-           <div className="personal-card">
-                    <h3>Name: {this.state.name}</h3>
-                       <h4>Current Tasks:</h4>
+           <div className="user-card">
+                      <div className="current-tasks">
+                       <h4 className="label">Your current Tasks</h4>
                         <ul>
                         {this.state.currentTasksToShow.map(task => (
-                            <li key={task.id} data-taskval={task.score} data-taskid={task.id}><span>{task.name}</span> | <span className="value">{task.score}</span><button onClick={this.removeTask} id="removeTask">Remove Task</button> | <button onClick={this.completeTask} id="completeTask">Complete</button></li>
+                            <li key={task.id} data-taskval={task.score} data-taskid={task.id}><span>{task.name}</span> | <span className="value">{task.score}</span> | <span onClick={this.removeTask} id="remove-task">x</span> | <span onClick={this.completeTask} id="complete-task">{'\u2714'}</span></li>
                         ))}
                         </ul>
-                    <h4>Previous tasks:</h4>
+                        </div>
+                        <div className="previous-tasks">
+                    <h4 className="label">Your previous tasks</h4>
                        
                      <ul>
                     {this.state.prevTasksToShow.map(task => (
                         <li key={task.id}><span>{task.name}</span> | <span className="value">{task.score}</span></li>
                     ))}
                 </ul>
-                    <h4>Total score: {this.state.score}</h4>
+                   </div>
+                   <div className="total">
+                    <h4 className="label">Total<br />score</h4>
+                    <h3 className="value">{this.state.score}</h3>
+                   </div>
             </div>
        );
    }

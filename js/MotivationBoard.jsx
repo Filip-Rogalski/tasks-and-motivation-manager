@@ -20,14 +20,13 @@ class MotivationBoard extends Component {
     }
     
     render(){
-        return (<div><h2>Motivation Board</h2>
+        return (
         <div className="motivation-board">
             {this.state.persons.filter((el, index) => { return index > 0}).map((person, index) => (
                 <PersonalCard tasks={this.state.tasks} key={person.id} person={person} />     
             ))}
         </div>
-        <AddNewPersonForm />
-        </div>);
+        );
     }
 }
 

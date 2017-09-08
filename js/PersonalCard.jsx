@@ -88,30 +88,29 @@ class PersonalCard extends Component {
     render(){
         return(
             <div className="personal-card">
-                <h3 className="name">{this.state.name}</h3>
+                <div className="label"><h3 className="name">{this.state.name} </h3><div className="total">{this.state.score}</div></div>
+                 <div className="current-tasks">
                   <h4>Current tasks:</h4>
                    <ul>
                         {this.state.currentTasksToShow.map((task, index) => (
                             <li key={index}><span>{task.name}</span> | <span className="value">{task.score}</span></li>
                         ))}
                         </ul>
-                                                                 
+                </div>                 
+                <div className="previous-tasks">
                 <h4>Previous tasks:</h4>
                     <ul>
                     {this.state.prevTasksToShow.map(task => (
-                        <li key={task.id}><span>{task.name}</span> | <span className="value">{task.score}</span></li>
+                        <li key={task.id}><span>{task.name}</span> | <div className="value">{task.score}</div></li>
                     ))}
                 </ul>            
-                <h4>Total score: {this.state.score}</h4>
-                
-            
-            
+                </div>
             {this.props.admin === true && 
-            <div>
+            <div className="add-task">
                <h4>Add task</h4>
                 <ul>
                     {this.state.tasksToAdd.map(task => (
-                        <li key={task.id} data-taskid={task.id}><span>{task.name}</span> | <button onClick={this.addTask}>Add Task</button></li>
+                        <li key={task.id} data-taskid={task.id} className="add-button" onClick={this.addTask}><span>+ {task.name}</span> | <span className="value">{task.score}</span></li>
                     ))}
                 </ul>
             </div>}

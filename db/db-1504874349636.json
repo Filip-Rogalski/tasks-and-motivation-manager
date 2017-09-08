@@ -42,11 +42,9 @@
         2,
         3,
         4,
-        5,
         7,
         8,
-        9,
-        10
+        9
       ],
       "prevTasks": [
         3,
@@ -56,10 +54,8 @@
     {
       "name": "John",
       "password": "qwerty",
-      "score": 1256,
+      "score": 916,
       "currentTasks": [
-        3,
-        4,
         8
       ],
       "prevTasks": [
@@ -69,10 +65,7 @@
         3,
         2,
         1,
-        9,
-        8,
-        5,
-        10
+        9
       ],
       "id": 3
     },
@@ -97,18 +90,9 @@
       "name": "John",
       "score": 423,
       "currentTasks": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
         1,
         2,
-        3,
-        5,
-        8
+        5
       ],
       "prevTasks": [
         1,
@@ -155,8 +139,7 @@
       "currentTasks": [
         1,
         2,
-        3,
-        9
+        3
       ],
       "prevTasks": [],
       "id": 8
@@ -168,7 +151,6 @@
         1,
         3,
         4,
-        5,
         6,
         7,
         8,
@@ -184,10 +166,8 @@
         2,
         3,
         4,
-        5,
         6,
         7,
-        8,
         9
       ],
       "prevTasks": [],
