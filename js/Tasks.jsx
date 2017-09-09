@@ -22,7 +22,7 @@ class Tasks extends Component {
         } else if (parseInt(this.state.logged, 10) < 1000) {
             return <PersonalMotivation />;
         } else {
-            return <h1>You must be logged to see this content</h1>    
+            return <h2 className="logged-out-warn">You must be logged to see this content</h2>    
         }
     }
 }

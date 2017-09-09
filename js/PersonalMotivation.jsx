@@ -121,7 +121,7 @@ class PersonalMotivation extends Component {
                 </ul>
                    </div>
                    <div className="total">
-                    <h4 className="label">Total<br />score</h4>
+                    <h4 className="label">Score</h4>
                     <h3 className="value">{this.state.score}</h3>
                    </div>
             </div>

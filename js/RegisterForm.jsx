@@ -52,10 +52,10 @@ class RegisterForm extends Component {
     
     render(){
         return (
-            <div className="row">Register Form
-              <form onSubmit={this.handleSubmit}>
-                   <input type="text" id="userName" value={this.state.newUserName} onChange={this.handleNewUserName} placeholder="username" />
-                    <input type="password" id="password" value={this.state.newUserPassword} onChange={this.handleNewUserPassword} placeholder="password" />
+            <div className="row register-form"><div className="label">Register Form</div>
+              <form autoComplete="off" onSubmit={this.handleSubmit}>
+                   <input type="text" id="userName" value={this.state.newUserName} onChange={this.handleNewUserName} placeholder="username" autoComplete="off" />
+                    <input type="password" id="password" value={this.state.newUserPassword} onChange={this.handleNewUserPassword} placeholder="password" autoComplete="off" />
                     <input type="password" id="passwordRepeat" value={this.state.newUserPasswordRepeat} onChange={this.handleNewUserPasswordRepeat} placeholder="repeat password" />
                     <input type="submit" value="register" />
                 </form>

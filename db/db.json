@@ -56,11 +56,10 @@
     {
       "name": "John",
       "password": "qwerty",
-      "score": 1256,
+      "score": 1456,
       "currentTasks": [
         3,
-        4,
-        8
+        4
       ],
       "prevTasks": [
         3,
@@ -72,7 +71,8 @@
         9,
         8,
         5,
-        10
+        10,
+        8
       ],
       "id": 3
     },
@@ -156,7 +156,8 @@
         1,
         2,
         3,
-        9
+        9,
+        13
       ],
       "prevTasks": [],
       "id": 8
@@ -214,30 +215,6 @@
       "score": 25
     },
     {
-      "name": "Task",
-      "periodic": true,
-      "score": 100,
-      "id": 4
-    },
-    {
-      "name": "Task",
-      "periodic": true,
-      "score": 100,
-      "id": 5
-    },
-    {
-      "name": "Task",
-      "periodic": true,
-      "score": 100,
-      "id": 6
-    },
-    {
-      "name": "Trash bin",
-      "periodic": "false",
-      "score": "23",
-      "id": 7
-    },
-    {
       "name": "Okna",
       "periodic": false,
       "score": "200",
@@ -254,6 +231,24 @@
       "periodic": "false",
       "score": "40",
       "id": 10
+    },
+    {
+      "name": "Check White-board markers",
+      "periodic": "on",
+      "score": "80",
+      "id": 13
+    },
+    {
+      "name": "Fill Coffee-machine",
+      "periodic": "on",
+      "score": "120",
+      "id": 14
+    },
+    {
+      "name": "Prepare meeting",
+      "periodic": false,
+      "score": "50",
+      "id": 15
     }
   ]
 }

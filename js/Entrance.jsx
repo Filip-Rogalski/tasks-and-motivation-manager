@@ -35,7 +35,6 @@ class Entrance extends Component {
             </div>);
         } else {
             return (<div className="row">
-                <h3>Login or register</h3>
                <LoginForm handleLogin={this.handleLogin} />
                <RegisterForm />
             </div>);      

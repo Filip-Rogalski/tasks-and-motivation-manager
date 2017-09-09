@@ -93,7 +93,7 @@ class PersonalCard extends Component {
                   <h4>Current tasks:</h4>
                    <ul>
                         {this.state.currentTasksToShow.map((task, index) => (
-                            <li key={index}><span>{task.name}</span> | <span className="value">{task.score}</span></li>
+                           <li key={index}><span>{task.name}</span> | <span className="value">{task.score}</span>{task.periodic ? <div className="periodical-info">Periodical</div> : <div className="periodical-info">One-timer</div>} </li>
                         ))}
                         </ul>
                 </div>                 
