@@ -17,9 +17,9 @@ class Board extends Component {
     }
     
     render(){
-        if (parseInt(this.state.logged, 10) == 1000) {
+        if (parseInt(this.state.logged, 10) == -1) {
             return <MotivationBoardAdmin />;
-        } else if (parseInt(this.state.logged, 10) < 1000) {
+        } else if (parseInt(this.state.logged, 10) > -1) {
             return <MotivationBoard />;
         } else {
             return <h2 className="logged-out-warn">You must be logged to see this content</h2>

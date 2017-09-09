@@ -73,7 +73,7 @@ class PersonalMotivation extends Component {
     }
     
     render(){
-        {if (this.props.logged < 1000) {
+        {if (this.props.logged < -1) {
             return(
                 <div className="personal-card">
                     <h3>Name: {this.state.person.name}</h3>

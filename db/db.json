@@ -1,7 +1,7 @@
 {
   "persons": [
     {
-      "id": 1000,
+      "id": -1,
       "name": "admin",
       "password": "admin",
       "score": 0,
@@ -55,29 +55,6 @@
     },
     {
       "name": "John",
-      "password": "qwerty",
-      "score": 1456,
-      "currentTasks": [
-        3,
-        4
-      ],
-      "prevTasks": [
-        3,
-        7,
-        6,
-        3,
-        2,
-        1,
-        9,
-        8,
-        5,
-        10,
-        8
-      ],
-      "id": 3
-    },
-    {
-      "name": "John",
       "password": "asdf",
       "score": 325,
       "currentTasks": [
@@ -94,7 +71,7 @@
       "id": 4
     },
     {
-      "name": "John",
+      "name": "Johnny",
       "score": 423,
       "currentTasks": [
         null,
@@ -123,31 +100,6 @@
         7
       ],
       "id": 5
-    },
-    {
-      "name": "John",
-      "score": 0,
-      "currentTasks": [
-        6,
-        7,
-        8
-      ],
-      "prevTasks": [],
-      "id": 6
-    },
-    {
-      "name": "John",
-      "score": 0,
-      "currentTasks": [
-        1,
-        2,
-        6,
-        7,
-        8,
-        9
-      ],
-      "prevTasks": [],
-      "id": 7
     },
     {
       "name": "Margaret",
@@ -193,6 +145,30 @@
       ],
       "prevTasks": [],
       "id": 10
+    },
+    {
+      "name": "Ala",
+      "password": "12",
+      "score": 0,
+      "currentTasks": [
+        1,
+        2,
+        14
+      ],
+      "prevTasks": [],
+      "id": 11
+    },
+    {
+      "name": "Helenka",
+      "password": "Hel",
+      "score": 305,
+      "currentTasks": [],
+      "prevTasks": [
+        3,
+        9,
+        13
+      ],
+      "id": 12
     }
   ],
   "tasks": [

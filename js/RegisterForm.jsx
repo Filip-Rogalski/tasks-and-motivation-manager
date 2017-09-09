@@ -33,19 +33,44 @@ class RegisterForm extends Component {
             return resp.json();
         }).then(data => {
             if (data.length == 0) {
-                this.setState({passwordValidation: true}, () => {
+                this.setState({newUserNameValidation: true}, () => {
                     console.log('username ok');
                 });
             } else {
                 console.log('username already taken!');
             }
-        })  
+        });
     }
     
     handleSubmit = (e) => {
         e.preventDefault();
         this.validationPassword(this.state.newUserPassword, this.state.newUserPasswordRepeat);
         this.validationNewUserName(this.state.newUserName);
+        setTimeout(()=>{
+            console.log(this.state.passwordValidation, this.state.newUserNameValidation);
+            if (this.state.passwordValidation == true && this.state.newUserNameValidation == true) {
+                 let newUser = {
+                    name: this.state.newUserName,
+                    password: this.state.newUserPassword,
+                    score: 0,
+                    currentTasks: [],
+                    prevTasks: []
+                }
+                fetch('http://localhost:3000/persons', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify( newUser )
+                }).then(()=>{
+                    console.log('new user registered!');
+                });
+            }
+        }, 100);
+        
+       
+        
+        
     }
     
     /* For the moment */

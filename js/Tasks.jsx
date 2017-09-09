@@ -17,9 +17,9 @@ class Tasks extends Component {
     }
     
     render(){
-        if (parseInt(this.state.logged, 10) == 1000) {
+        if (parseInt(this.state.logged, 10) == -1) {
             return <TasksManager />;
-        } else if (parseInt(this.state.logged, 10) < 1000) {
+        } else if (parseInt(this.state.logged, 10) > -1) {
             return <PersonalMotivation />;
         } else {
             return <h2 className="logged-out-warn">You must be logged to see this content</h2>    
