@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link, IndexLink } from 'react-router';
 
 class LoginInfo extends Component {
     render(){

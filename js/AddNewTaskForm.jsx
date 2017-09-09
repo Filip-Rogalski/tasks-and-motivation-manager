@@ -1,45 +1,6 @@
 import React, { Component } from 'react';
 
 class AddNewTaskForm extends Component {
-    constructor(){
-        super();
-        this.state = {
-            newTaskName: '',
-            newTaskValue: 0,
-            newTaskPeriodical: false
-        };
-    }
-    
-    
-    handleNewTaskName = (e) => {
-        this.setState({newTaskName: e.target.value});
-    }
-    
-    handleNewTaskValue = (e) => {
-        this.setState({newTaskValue: e.target.value});
-    }
-    
-    handleNewTaskPeriodical = (e) => {
-        this.setState({newTaskPeriodical: e.target.value});
-    }
-    
-    handleSubmit = (e) => {
-        e.preventDefault();
-     
-         let newTask = {
-            name: this.state.newTaskName,
-            periodic: this.state.newTaskPeriodical,
-            score: this.state.newTaskValue
-        }
-
-        fetch('http://localhost:3000/tasks', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify( newTask )
-              });
-    }
     
     render(){
         return(

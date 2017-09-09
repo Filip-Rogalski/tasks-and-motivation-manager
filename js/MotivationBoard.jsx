@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PersonalCard from './PersonalCard.jsx';
-import AddNewPersonForm from './AddNewPersonForm.jsx';
 
 class MotivationBoard extends Component {
     constructor(){

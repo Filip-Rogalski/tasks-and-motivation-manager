@@ -47,7 +47,6 @@ class RegisterForm extends Component {
         this.validationPassword(this.state.newUserPassword, this.state.newUserPasswordRepeat);
         this.validationNewUserName(this.state.newUserName);
         setTimeout(()=>{
-            console.log(this.state.passwordValidation, this.state.newUserNameValidation);
             if (this.state.passwordValidation == true && this.state.newUserNameValidation == true) {
                  let newUser = {
                     name: this.state.newUserName,

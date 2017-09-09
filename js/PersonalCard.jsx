@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import AddTaskPersonal from './AddTaskPersonal.jsx';
 import filterTasks from './filterTasks_1';
 import getCompletionArray from './getCompletionArray';
 
